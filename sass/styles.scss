@@ -1,38 +1,108 @@
 // Resets, Clearfix, etc
+@import "partials/reset";
+@import "partials/clearfix";
 
 // Variables
- 
-// Media Query Ranges 
- 
-// Mixins
+$dark-color: purple;
+$medium-color: blue;
+$light-color: aqua;
+$bright-color: lime;
+$default-padding: 16px;
+$phone: "only screen and (max-width: 400px)";
+$desktop: "only screen and (min-width: 800px)";
+$tablet: "only screen and (min-width: 400px) and (max-width: 800px)";
 
-// Styles
-body{
-  background-color: orange;
-  text-align: center;
-  color: #EEE;
+// Mixins
+@mixin block_font($block_font_size: 25px, $block_font_color: $dark-color){
+  font-size: $block_font_size;
+  color: $block_font_color;
 }
- 
+
+// Media Queries and Styles
+body{
+  font-size: larger;
+  text-align: center;
+  background-color: $medium-color;
+  color: $light-color;
+  @media #{$tablet} {
+    background-color: $light-color;
+    color: $dark-color;
+  }
+  @media #{$desktop} {
+    background-color: $dark-color;
+    color: $bright-color;
+  }
+}
+
+li:nth-child(3n+1) > h2{
+  @media #{$desktop} {
+    background-color: $medium-color;
+    color: $dark-color;
+  }
+}
+
+li:nth-child(3n+2) > h2 {
+  @media #{$desktop} {
+    background-color: $light-color;
+    color: $dark-color;
+  }
+}
+
+li:nth-child(3n+3) > h2 {
+  @media #{$desktop} {
+    background-color: $bright-color;
+    color: $dark-color;
+  }
+}
+
+li:nth-child(2n) > h2{
+  padding: $default-padding;
+  @media #{$tablet} {
+    background-color: $medium-color;
+    color: $bright-color;
+  }
+}
+
+li > h2{
+  padding: $default-padding;
+  @media #{$phone} {
+    background-color: $light-color;
+    color: $dark-color;
+  }
+  @media #{$tablet} {
+    background-color: $dark-color;
+    color: $light-color;
+  }
+}
+
+li{   /* border-box is needed to change the box sizes at the media size intervals */
+  box-sizing: border-box;
+  width: 100%;
+  float: left;
+  display: block;
+  @media #{$desktop} {
+    width: 33.3%;
+  }
+  @media #{$tablet} {
+    width: 50%;
+  }
+}
+
+h1{
+  font-weight: bold;
+  padding: $default-padding;
+}
+
 h1, h2, h3, h4{
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
 }
- 
-h1{
-  padding: 20px;
-}
- 
-h2{
- 
-}
- 
- 
+
 .block_family{
-  max-width:350px;
-  margin:auto;
-}
- 
+  max-width: 1200px;
+  margin: auto;
+  display: block;
+} /* margin auto is needed for centering on screens > max-width */
+
 .block_family li{
-  background-color: #222;
-  margin-bottom: 20px;
-  padding: 20px;
+  padding: 8px;
 }
